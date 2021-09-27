@@ -1,0 +1,39 @@
+version: '3'
+
+volumes:
+  postgres:
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: todo
+      POSTGRES_USER: todo
+      POSTGRES_PASSWORD: todo
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  redis:
+    image: redis
+    restart: always
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+
+  todo:
+    build: .
+    restart: always
+    environment:
+      KNEX_CONNECTION_HOST: postgres
+      KNEX_CONNECTION_DATABASE: todo
+      KNEX_CONNECTION_USER: todo
+      KNEX_CONNECTION_PASSWORD: todo
+      REDIS_HOST: redis
+      MICRO_HOST: rabbitmq
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+    ports:
+      - 3000:3000
