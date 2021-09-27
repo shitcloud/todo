@@ -41,9 +41,13 @@
 					</div>
 					<div class="column is-one-third" v-if="selected">
 						<div class="field">
-							<input type="text" v-model="selected.title" class="input title is-4" @input="updateSelected">
+							<label class="label">Title</label>
+							<div class="control">
+								<input type="text" v-model="selected.title" class="input title is-4" @input="updateSelected">
+							</div>
 						</div>
 						<div class="field">
+							<label class="label">Description</label>
 							<textarea class="textarea" v-model="selected.description" @input="updateSelected"></textarea>
 						</div>
 						<div class="field">
@@ -131,16 +135,6 @@ td.check {
 
 .has-border-right {
 	border-right: solid 1px #dbdbdb;
-}
-
-.input {
-	border: none;
-	box-shadow: none;
-}
-
-.textarea {
-	border: none;
-	box-shadow: none;
 }
 
 @media screen and (max-width: 769px) {
