@@ -67,7 +67,6 @@ io.on('connection', (socket) => {
 
 		if (oldTodo.author === socket.user.id) {
 			const newTodo = await todo.update(id, title, description, done);
-			console.log('todo:updated', id, newTodo);
 			io.in(`user:${socket.user.id}`).emit('todo:updated', id, newTodo);
 		}
 	});

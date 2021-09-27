@@ -61,7 +61,6 @@ async function update(id, title, description, done) {
 		updates.done = done;
 
 	let [ updated ] = await knex('todos').update(updates).where({ id }).returning('*');
-	console.log(updated);
 
 	return updated;
 }

@@ -12,7 +12,6 @@ export default new Vuex.Store({
 			state.todos.push(todo);
 		},
 		setTodo(state, { id, todo }) {
-			console.log(id, todo);
 			let index = state.todos.findIndex(t => t.id === id);
 			state.todos.splice(index, 1, todo);
 		},

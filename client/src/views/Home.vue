@@ -71,7 +71,6 @@ export default {
 	}),
 	created() {
 		this.updateSelected = this._.debounce(() => {
-			console.log('debounced');
 			this.$socket.emit('todo:update', this.selected.id, { title: this.selected.title, description: this.selected.description });
 		}, 1000);
 	},
@@ -87,7 +86,6 @@ export default {
 			this.$store.commit('addTodo', todo);
 		},
 		'todo:updated': function ([id, todo]) {
-			console.log('todo:updated', id, todo);
 			this.$store.commit('setTodo', { id, todo });
 			if (this.selected.id === id) {
 				this.select(id);
@@ -113,7 +111,6 @@ export default {
 		},
 		fetchTodos() {
 			this.$socket.emit('todo:find', (todos) => {
-				console.log(todos);
 				this.$store.commit('setTodos', todos);
 			});
 		},
